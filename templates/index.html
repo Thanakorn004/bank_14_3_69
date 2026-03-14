@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="main-card p-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3>📊 รายการบัญชีทั้งหมด</h3>
+        <a href="/create" class="btn btn-success btn-custom">➕ สร้างบัญชี</a>
+    </div>
+
+    <div class="alert alert-info text-center">
+        💰 ยอดเงินรวมทั้งระบบ:
+        <span class="balance-box">{{ total_balance }} บาท</span>
+    </div>
+
+    <table class="table table-hover text-center align-middle">
+        <tr>
+            <th>เลขบัญชี</th>
+            <th>ชื่อผู้ใช้</th>
+            <th>ยอดเงิน</th>
+            <th>จัดการ</th>
+        </tr>
+
+        {% for acc in accounts %}
+        <tr>
+            <td>{{ acc[0] }}</td>
+            <td>{{ acc[1] }}</td>
+            <td class="text-success fw-bold">{{ acc[2] }}</td>
+            <td>
+                <a href="/account/{{ acc[0] }}" class="btn btn-primary btn-sm btn-custom">ดู</a>
+                <a href="/delete/{{ acc[0] }}" class="btn btn-danger btn-sm btn-custom">ลบ</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+{% endblock %}
